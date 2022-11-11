@@ -1,7 +1,8 @@
 # bug_debug_hack2educate
 
-Team Name : bug_debug
-Theme : Audio dubbing for Youtube videos
+##Team Name : bug_debug
+
+###Theme : Audio dubbing for Youtube videos
 
 How will you solve the problem?
 Ans : 
