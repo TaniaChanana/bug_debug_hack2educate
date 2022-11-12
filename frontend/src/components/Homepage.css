@@ -1,0 +1,25 @@
+.video__searchbar {
+    margin-top: 3vh;
+    min-width: 600px;
+    align-self: center;
+    font-size: 3vh;
+    margin-bottom: 5vh;
+}
+
+.homepage__container {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.video__container{
+    padding: 20px;
+}
+
+.language__options{
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    overflow: auto;
+}
