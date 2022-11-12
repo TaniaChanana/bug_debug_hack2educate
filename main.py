@@ -38,7 +38,7 @@ def api(url, lang):
     options.add_argument("--incognito")
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
-    download_dir = 'D:\Dubbing'
+    download_dir = os.getcwd()
     profile = {"plugins.plugins_list": [{"enabled": False, "name": "Chrome PDF Viewer"}], # Disable Chrome's PDF Viewer
                 "download.default_directory": download_dir}
     options.add_experimental_option("prefs", profile)
