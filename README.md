@@ -11,10 +11,13 @@ How much have you implemented/Milestones we have achieved?
 Ans : Till now we have converted the video which is in one language to other languages at the backend side.
 Steps we have followed to do this :
 
-1. Automatically downloaded the video from the link.
-2. Then extracted the text from the video.
-3. Converted that text to the required to language.
-4. Converted text to speech.
+1. Selenium will install video from the given url.
+2. Audio will be extracted from the video.
+3. Extracted audio will be converted to text.
+4. Text will be converted to the desired language.
+5. Converted text will be converted to dubbed audio.
+6. Dubbed audio will be added to the video.
+7. Video with dubbed audio will be returned.
 
 Milestones you plan to achieve in the next 24 hours.
 Ans : 
