@@ -8,7 +8,6 @@ def api(url, lang):
     from selenium.webdriver.common.by import By
     import time
     from selenium.webdriver.chrome.options import Options
-    from selenium.webdriver.chrome.service import Service
     from webdriver_manager.chrome import ChromeDriverManager
     import boto3
 
@@ -35,8 +34,6 @@ def api(url, lang):
     profile = {"plugins.plugins_list": [{"enabled": False, "name": "Chrome PDF Viewer"}], # Disable Chrome's PDF Viewer
                 "download.default_directory": download_dir}
     options.add_experimental_option("prefs", profile)
-
-    driver = webdriver.Chrome(service=Service('/home/ubuntu/chromedriver'),options=options)
 
     website = "https://us.savefrom.net/"
     try:
