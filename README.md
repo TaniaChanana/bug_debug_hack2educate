@@ -21,6 +21,12 @@ Ans :
 1. Our next milestone is to create a user friendly web app in which user can easily paste any link and got the required audio dubbed video by just clicking on one button.
 2. To connect the frontend with backend.
 
+How do you plan to work on the remarks provided in the ideation stage evaluation?
+We have added more details above and also attached a demo video for more clarity.
+
+Are you facing any issues?
+Not yet
+
 UI Demo : 
 ![WhatsApp Image 2022-11-12 at 4 06 50 PM](https://user-images.githubusercontent.com/75874271/201472195-48d7bf1f-b18d-40d7-8b61-1450923b0336.jpeg)
 
