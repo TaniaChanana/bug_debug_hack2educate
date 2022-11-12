@@ -19,6 +19,7 @@ Steps we have followed to do this :
 6. Dubbed audio will be added to the video.
 7. Video with dubbed audio will be returned.
 8. Dubbed video will be saved as final.mp4.
+9. Dubbed video will be uploaded to s3 bucket and the corresponding url will be returned.
 
 Milestones you plan to achieve in the next 24 hours.
 Ans : 
