@@ -2,24 +2,18 @@ def api(url, lang):
     import speech_recognition as sr 
     import moviepy.editor as mp
     from googletrans import Translator 
-    from playsound import playsound
     from gtts import gTTS
     import os
-    
-    #Downloading video from Youtube url
     from selenium import webdriver
     from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
-    from selenium.common.exceptions import TimeoutException
-    from selenium.webdriver.common.keys import Keys
     import time
-    from selenium.webdriver.common.action_chains import ActionChains
     from selenium.webdriver.chrome.options import Options
-    from selenium.webdriver.common.action_chains import ActionChains
     from selenium.webdriver.chrome.service import Service
     from webdriver_manager.chrome import ChromeDriverManager
+    import boto3
 
+
+    #Downloading video from Youtube url
     options = Options()
     options.add_argument(f'user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36')
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -29,7 +23,6 @@ def api(url, lang):
     options.add_argument("--proxy-server='direct://'")
     options.add_argument("--proxy-bypass-list=*")
     options.add_argument("--start-maximized")
-    #options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--no-sandbox')
@@ -142,7 +135,20 @@ def api(url, lang):
     audioclip = mp.AudioFileClip("captured_voice.mp3")
     videoclip = clip.set_audio(audioclip)
     videoclip.write_videofile("final.mp4")
-    return 'final.mp4'
+
+    #Uploading dubbed video on s3 bucket
+    s3 = boto3.resource('s3')
+    upload_file = 'final.mp4'
+    s3_client = boto3.client(
+        's3',
+        aws_access_key_id="AKIAXLEAGKOGX6KBSN5O",
+        aws_secret_access_key="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"
+    )
+    s3.Bucket('bug-debug-h2e').upload_file(Key = upload_file, Filename = upload_file)
+    url = f"https://bug-debug-h2e.s3.ap-south-1.amazonaws.com/{upload_file}"
+    driver.quit()
+    print(url)
+    return url
 
 #Passing link of youtube video and the desired language to be dubbed in
 api('https://www.youtube.com/watch?v=h5gNSHcoVmQ', 'hindi')
