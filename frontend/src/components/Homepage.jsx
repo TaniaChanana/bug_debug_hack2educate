@@ -8,12 +8,13 @@ import LanguageCard from './LangaugeCard';
 import ReactWebMediaPlayer from 'react-web-media-player';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
+import axios from 'axios'
 const { Search } = Input;
 const { Title } = Typography;
 const antIcon = <LoadingOutlined style={{ fontSize: 56 }} spin />;
 const languages = [
     {
-        title: "Hindi",
+        title: "hindi",
         src: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_India.png",
     },
     {
@@ -52,6 +53,14 @@ const Homepage = () => {
         console.log(value);
     }
 
+    const getDubbedVideo = () => {
+        try {
+            const res = axios.get()
+        } catch (error) {
+
+        }
+    }
+
     return (
         <Fragment>
             <div className="homepage">
@@ -72,7 +81,8 @@ const Homepage = () => {
                                     height={360}
                                     autoplay
                                     title="My own video player"
-                                    video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                    // video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                    video="https://bug-debug-h2e.s3.ap-south-1.amazonaws.com/final.mp4"
                                     thumbnail="https://any-link.com/video-thumbnail.jpg"
                                 />}
                         </div>
@@ -84,10 +94,10 @@ const Homepage = () => {
                                 ))
                             }
                         </div>
-                    </Fragment>:
-                    <Typography>Enter a valid Url to continue dubbing</Typography>
-                    
-                }
+                    </Fragment> :
+                        <Typography>Enter a valid Url to continue dubbing</Typography>
+
+                    }
                 </div>
                 <Spin indicator={antIcon} />
 

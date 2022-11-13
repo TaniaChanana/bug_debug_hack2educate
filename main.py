@@ -46,7 +46,7 @@ def api(url, lang):
     driver.find_element(By.XPATH, "//input[@type='text']").send_keys(url)
 
     driver.find_element(By.XPATH, "//button[contains(text(), 'Download')]").click()
-    time.sleep(2)
+    time.sleep(5)
 
     driver.find_element(By.XPATH, "//a[contains(text(), 'Download')]").click()
     time.sleep(10)
