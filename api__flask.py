@@ -1,5 +1,7 @@
 from flask import Flask, jsonify
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello_world():
@@ -18,9 +20,7 @@ def api(url, lang):
     from selenium.webdriver.chrome.options import Options
     from webdriver_manager.chrome import ChromeDriverManager
     import boto3
-    print(url)
     url = f'https://www.youtube.com/watch?v={url}'
-    print(url)
     # Downloading video from Youtube url
     options = Options()
     options.add_argument(
@@ -56,10 +56,10 @@ def api(url, lang):
     driver.find_element(By.XPATH, "//input[@type='text']").send_keys(url)
 
     driver.find_element(By.XPATH, "//button[contains(text(), 'Download')]").click()
-    time.sleep(2)
+    time.sleep(5)
 
     driver.find_element(By.XPATH, "//a[contains(text(), 'Download')]").click()
-    time.sleep(10)
+    time.sleep(20)
 
     # Getting path of video
     for i in os.listdir(os.curdir):
@@ -154,6 +154,9 @@ def api(url, lang):
     url = f"https://bug-debug-h2e.s3.ap-south-1.amazonaws.com/{upload_file}"
     driver.quit()
     print(url)
+    os.remove('captured_voice.mp3')
+    os.remove('converted.wav')
+    os.remove('final.mp4')
     return jsonify(url)
 
 if __name__ == "__main__":

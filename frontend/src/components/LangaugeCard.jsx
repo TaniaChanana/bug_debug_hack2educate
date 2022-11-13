@@ -1,10 +1,11 @@
 import React from 'react'
 import { Card } from 'antd';
 const { Meta } = Card;
-const LanguageCard = ({ image,setDubFilter }) => {
+const LanguageCard = ({ image,setDubFilter ,getDubbedVideo}) => {
     const onCardClick = () => {
         console.log(image.title);
         setDubFilter(true);
+        getDubbedVideo();
     }
     return (
         <div className="language__card" style={{ "margin": "10px" }}>

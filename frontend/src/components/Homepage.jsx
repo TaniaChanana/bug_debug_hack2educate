@@ -45,17 +45,23 @@ const languages = [
 const Homepage = () => {
 
     const [videoUrl, setVideoUrl] = useState("");
-    // const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [dubFilter, setDubFilter] = useState(false);
+    const [dubbedVideoUrl, setDubbedVideoUrl] = useState("");
     const onSearch = (value) => {
         setVideoUrl(value);
         setDubFilter(false);
         console.log(value);
     }
 
-    const getDubbedVideo = () => {
+    const getDubbedVideo = async () => {
+        let url = videoUrl;
+        url = videoUrl.split("https://www.youtube.com/watch?v=");
+        console.log(url);
         try {
-            const res = axios.get()
+            const res = await axios.get(`http://127.0.0.1:5000/dub/${url[1]}/hindi`);
+            setDubbedVideoUrl(res.data);
+            console.log(res)
         } catch (error) {
 
         }
@@ -81,8 +87,7 @@ const Homepage = () => {
                                     height={360}
                                     autoplay
                                     title="My own video player"
-                                    // video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                                    video="https://bug-debug-h2e.s3.ap-south-1.amazonaws.com/final.mp4"
+                                    video={dubbedVideoUrl}
                                     thumbnail="https://any-link.com/video-thumbnail.jpg"
                                 />}
                         </div>
@@ -90,7 +95,7 @@ const Homepage = () => {
                         <div className="language__options">
                             {
                                 languages.map((language, idex) => (
-                                    <LanguageCard image={language} key={idex} setDubFilter={setDubFilter} />
+                                    <LanguageCard image={language} key={idex} setDubFilter={setDubFilter} getDubbedVideo={getDubbedVideo} />
                                 ))
                             }
                         </div>
