@@ -3,12 +3,14 @@ import "antd/dist/antd.min.css";
 import { Typography } from 'antd';
 import { Input } from 'antd';
 import './Homepage.css'
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player/youtube'
 import LanguageCard from './LangaugeCard';
-
+import ReactWebMediaPlayer from 'react-web-media-player';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 const { Search } = Input;
 const { Title } = Typography;
-
+const antIcon = <LoadingOutlined style={{ fontSize: 56 }} spin />;
 const languages = [
     {
         title: "Hindi",
@@ -42,8 +44,11 @@ const languages = [
 const Homepage = () => {
 
     const [videoUrl, setVideoUrl] = useState("");
+    // const [loading, setLoading] = useState(false);
+    const [dubFilter, setDubFilter] = useState(false);
     const onSearch = (value) => {
-        setVideoUrl(value)
+        setVideoUrl(value);
+        setDubFilter(false);
         console.log(value);
     }
 
@@ -58,18 +63,34 @@ const Homepage = () => {
                         <Search placeholder="Enter youtube url to continue dubbing" enterButton size='large' onSearch={onSearch} />
                     </div>
 
-                    <div className="video__container">
-                        <ReactPlayer url={videoUrl} />
-                    </div>
+                    {videoUrl.length ? <Fragment>
+                        <div className="video__container">
+                            {!dubFilter ? <ReactPlayer url={videoUrl} />
+                                :
+                                <ReactWebMediaPlayer
+                                    width={640}
+                                    height={360}
+                                    autoplay
+                                    title="My own video player"
+                                    video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                    thumbnail="https://any-link.com/video-thumbnail.jpg"
+                                />}
+                        </div>
 
-                    <div className="language__options">
-                        {
-                            languages.map((language, idex) => (
-                                <LanguageCard image={language} key={idex} />
-                            ))
-                        }
-                    </div>
+                        <div className="language__options">
+                            {
+                                languages.map((language, idex) => (
+                                    <LanguageCard image={language} key={idex} setDubFilter={setDubFilter} />
+                                ))
+                            }
+                        </div>
+                    </Fragment>:
+                    <Typography>Enter a valid Url to continue dubbing</Typography>
+                    
+                }
                 </div>
+                <Spin indicator={antIcon} />
+
             </div>
         </Fragment>
     )
