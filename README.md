@@ -35,5 +35,5 @@ Not yet
 UI Demo : 
 ![WhatsApp Image 2022-11-12 at 4 06 50 PM](https://user-images.githubusercontent.com/75874271/201472195-48d7bf1f-b18d-40d7-8b61-1450923b0336.jpeg)
 
-Video demo :
-https://www.loom.com/share/eeaef12c3e3b455ea7582079e0972ab8
+Youtube link :
+https://youtu.be/vwtY4b0U9Lc
